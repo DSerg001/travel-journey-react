@@ -1,0 +1,85 @@
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.css";
+import { AuthContext } from "../../context/authContext";
+
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const { setUserData } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    let hasError = false;
+
+    if (username.trim() === "") {
+      setUsernameError("Please fill in the username field.");
+      hasError = true;
+    } else if (username.length < 4) {
+      setUsernameError("The username length should be at least 4 letters");
+      hasError = true;
+    } else {
+      setUsernameError("");
+    }
+
+    if (password.trim() === "") {
+      setPasswordError("Please fill in the password field.");
+      hasError = true;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!hasError) {
+      const newUserData = {
+        isAuthenticated: true,
+        user: { username },
+      };
+
+      setUserData(newUserData);
+
+      navigate("/explore");
+    }
+  };
+
+  return (
+    <div className={styles.loginContainer}>
+      <h1 className={styles.loginText}>Login</h1>
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Username"
+          className={`${styles.input} ${
+            usernameError ? styles.inputError : ""
+          }`}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {usernameError && (
+          <div className={styles.errorMessage}>{usernameError}</div>
+        )}
+
+        <input
+          type="password"
+          placeholder="Password"
+          className={`${styles.input} ${
+            passwordError ? styles.inputError : ""
+          }`}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {passwordError && (
+          <div className={styles.errorMessage}>{passwordError}</div>
+        )}
+
+        <button onClick={handleLogin} className={styles.loginButton}>
+          Enter
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
