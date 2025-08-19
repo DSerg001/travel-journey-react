@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styles from "./Explore.module.css";
+import { AuthContext } from "../../context/authContext";
 
 const travelPosts = [
   {
@@ -58,9 +60,11 @@ const travelPosts = [
 ];
 
 const Explore = () => {
+  const { myJournal } = useContext(AuthContext);
+
   return (
     <div className={styles.exploreGrid}>
-      {travelPosts.map((post) => (
+      {[...myJournal, ...travelPosts].map((post) => (
         <div key={post.id} className={styles.travelCard}>
           <img
             src={post.imageUrl}

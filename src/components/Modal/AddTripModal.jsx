@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./AddTripModal.module.css";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/authContext.js";
 
 const initialFormState = {
   title: "",
@@ -73,6 +73,8 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
     if (e.target === e.currentTarget) handleCancel();
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <div
       className={styles.modalOverlay}
@@ -126,7 +128,24 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
           name="date"
           placeholder="Date"
           value={formData.date}
-          onChange={handleChange}
+          max={`${currentYear}-12-31`}
+          onChange={(e) => {
+            const inputDate = e.target.value;
+            const year = inputDate.split("-")[0];
+            if (Number(year) > currentYear) {
+              const today = new Date();
+              const formattedDate = `${today.getFullYear()}-${(
+                "0" +
+                (today.getMonth() + 1)
+              ).slice(-2)}-${("0" + today.getDate()).slice(-2)}`;
+              setFormData((prev) => ({
+                ...prev,
+                date: formattedDate,
+              }));
+            } else {
+              handleChange(e);
+            }
+          }}
         />
         {errors.date && <span className={styles.error}>{errors.date}</span>}
 

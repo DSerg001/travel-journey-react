@@ -8,7 +8,7 @@
   padding: 15px 40px;
   max-width: 1200px;
   margin: 20px auto;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .imgLogo a {
@@ -35,7 +35,7 @@
 
 .headerBtn,
 .logoutBtn {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   padding: 10px 20px;
@@ -48,12 +48,15 @@
 
 .headerBtn {
   background-color: transparent;
-  color: #555;
+  background-color: #3498db;
+  color: #ecf0f1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .headerBtn:hover {
   background-color: #ecf0f1;
-  color: #34495e;
+  color: #3498db;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import styles from "./Header.module.css";
-import { AuthContext } from "../../context/authContext";
-import AddTripModal from "../Modal/AddTripModal"; 
+import { AuthContext } from "../../context/authContext.js";
+import AddTripModal from "../Modal/AddTripModal";
 
 const Header = () => {
   const { userData, logout } = useContext(AuthContext);

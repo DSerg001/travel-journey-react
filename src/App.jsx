@@ -3,7 +3,7 @@ import Explore from "./pages/Explore";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Header from "./components/Header";
-import { AuthContext } from "./context/authContext";
+import { AuthContext } from "./context/authContext.js";
 import { useState, useEffect } from "react";
 import AddTripPage from "./pages/AddTrip";
 import MyJournalPage from "./pages/MyJournal";
@@ -13,16 +13,11 @@ function App() {
     const saved = localStorage.getItem("userData");
     return saved ? JSON.parse(saved) : null;
   });
-  const [myJournal, setJournal] = useState([
-    {
-      title: "Mi ban",
-      location: "location",
-      date: "date",
-      description: "description",
-      imageFile: null,
-      imagePreview: "",
-    },
-  ]);
+  const [myJournal, setJournal] = useState(() => {
+    const saved = localStorage.getItem("myJournal");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +28,14 @@ function App() {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (myJournal) {
+      localStorage.setItem("myJournal", JSON.stringify(myJournal));
+    } else {
+      localStorage.removeItem("myJournal");
+    }
+  }, [myJournal]);
+
   const logout = () => {
     localStorage.removeItem("userData");
     setUserData(null);
@@ -40,7 +43,9 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider value={{ userData, setUserData, logout, setJournal, myJournal }}>
+    <AuthContext.Provider
+      value={{ userData, setUserData, logout, setJournal, myJournal }}
+    >
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
