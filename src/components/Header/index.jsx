@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import styles from "./Header.module.css";
 import { AuthContext } from "../../context/authContext.js";
 import AddTripModal from "../Modal/AddTripModal";
+import logo from "../../assets/travel journey.png";
 
 const Header = () => {
   const { userData, logout } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.imgLogo}>
         <a href="/">
-          <h3 className="logo">Travel Journey</h3>
+          <img src={logo} alt="Travel Journey" className="logo" />
         </a>
       </div>
       <nav className={styles.navigateBtn}>

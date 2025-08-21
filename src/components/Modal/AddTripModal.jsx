@@ -85,15 +85,21 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
       <div className={styles.modalContent}>
         <h2>Add New Trip</h2>
 
-        <input
-          type="file"
-          name="imageFile"
-          accept="image/*"
-          onChange={handleChange}
-        />
-        {errors.imageFile && (
-          <span className={styles.error}>{errors.imageFile}</span>
-        )}
+        <div className={styles.fileInputWrapper}>
+          <input
+            type="file"
+            id="fileUpload"
+            name="imageFile"
+            accept="image/*"
+            onChange={handleChange}
+            className={styles.hiddenFileInput}
+          />
+          <label htmlFor="fileUpload" className={styles.customFileLabel}>
+            {formData.imageFile
+              ? formData.imageFile.name
+              : "Choose file / No file chosen"}
+          </label>
+        </div>
 
         {formData.imagePreview && (
           <img

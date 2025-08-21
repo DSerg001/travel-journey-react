@@ -5,13 +5,14 @@ import recycleBinIcon from "../../assets/recyclebinicon.png";
 
 const MyJournalPage = () => {
   const { myJournal, setJournal } = useContext(AuthContext);
+  console.log(myJournal)
 
   return (
     <div className={styles.exploreGrid}>
       {myJournal.map((post) => (
         <div key={post.title} className={styles.travelCard}>
           <img
-            src={post.imageUrl}
+            src={post.imagePreview}
             alt={post.title}
             className={styles.cardImage}
           />

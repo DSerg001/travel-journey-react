@@ -30,6 +30,7 @@ function App() {
 
   useEffect(() => {
     if (myJournal) {
+      console.log(myJournal)
       localStorage.setItem("myJournal", JSON.stringify(myJournal));
     } else {
       localStorage.removeItem("myJournal");

@@ -67,7 +67,7 @@ const Explore = () => {
       {[...myJournal, ...travelPosts].map((post) => (
         <div key={post.id} className={styles.travelCard}>
           <img
-            src={post.imageUrl}
+            src={post.imagePreview || post.imageUrl}
             alt={post.title}
             className={styles.cardImage}
           />
