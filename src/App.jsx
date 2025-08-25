@@ -1,22 +1,22 @@
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Explore from "./pages/Explore";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
 import Header from "./components/Header";
 import { AuthContext } from "./context/authContext.js";
-import { useState, useEffect } from "react";
-import AddTripPage from "./pages/AddTrip";
-import MyJournalPage from "./pages/MyJournal";
+import useJournalStore from "./store.js";
+
+const Home = lazy(() => import("./pages/Home/index.jsx"));
+const Explore = lazy(() => import("./pages/Explore/index.jsx"));
+const Login = lazy(() => import("./pages/Login/index.jsx"));
+const AddTripPage = lazy(() => import("./pages/AddTrip/index.jsx"));
+const MyJournalPage = lazy(() => import("./pages/MyJournal/index.jsx"));
 
 function App() {
   const [userData, setUserData] = useState(() => {
     const saved = localStorage.getItem("userData");
     return saved ? JSON.parse(saved) : null;
   });
-  const [myJournal, setJournal] = useState(() => {
-    const saved = localStorage.getItem("myJournal");
-    return saved ? JSON.parse(saved) : [];
-  });
+
+  const myJournal = useJournalStore((state) => state.journals);
 
   const navigate = useNavigate();
 
@@ -28,15 +28,6 @@ function App() {
     }
   }, [userData]);
 
-  useEffect(() => {
-    if (myJournal) {
-      console.log(myJournal)
-      localStorage.setItem("myJournal", JSON.stringify(myJournal));
-    } else {
-      localStorage.removeItem("myJournal");
-    }
-  }, [myJournal]);
-
   const logout = () => {
     localStorage.removeItem("userData");
     setUserData(null);
@@ -44,17 +35,17 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ userData, setUserData, logout, setJournal, myJournal }}
-    >
+    <AuthContext.Provider value={{ userData, setUserData, logout, myJournal }}>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/add-trip" element={<AddTripPage />} />
-        <Route path="/my-journal" element={<MyJournalPage />} />
-      </Routes>
+      <Suspense fallback={<div>Բեռնում...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/add-trip" element={<AddTripPage />} />
+          <Route path="/my-journal" element={<MyJournalPage />} />
+        </Routes>
+      </Suspense>
     </AuthContext.Provider>
   );
 }

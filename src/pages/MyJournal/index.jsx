@@ -5,7 +5,7 @@ import recycleBinIcon from "../../assets/recyclebinicon.png";
 
 const MyJournalPage = () => {
   const { myJournal, setJournal } = useContext(AuthContext);
-  console.log(myJournal)
+  console.log(myJournal);
 
   return (
     <div className={styles.exploreGrid}>
