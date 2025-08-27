@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import styles from "./Header.module.css";
-import { AuthContext } from "../../context/authContext.js";
+import { AuthContext } from "../../context/authContext";
 import AddTripModal from "../Modal/AddTripModal";
 import logo from "../../assets/travel journey.png";
 

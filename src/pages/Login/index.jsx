@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import { AuthContext } from "../../context/authContext.js";
+import { AuthContext } from "../../context/authContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./AddTripModal.module.css";
-import { AuthContext } from "../../context/authContext.js";
+import { AuthContext } from "../../context/authContext";
 
 const initialFormState = {
   title: "",

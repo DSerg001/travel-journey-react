@@ -1,8 +1,7 @@
-import React, { Suspense, lazy, useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { AuthContext } from "./context/authContext";
+import { useState, useEffect, Suspense, lazy } from "react";
 import Header from "./components/Header";
-import { AuthContext } from "./context/authContext.js";
-import useJournalStore from "./store.js";
 
 const Home = lazy(() => import("./pages/Home/index.jsx"));
 const Explore = lazy(() => import("./pages/Explore/index.jsx"));
@@ -16,7 +15,10 @@ function App() {
     return saved ? JSON.parse(saved) : null;
   });
 
-  const myJournal = useJournalStore((state) => state.journals);
+  const [myJournal, setJournal] = useState(() => {
+    const saved = localStorage.getItem("myJournal");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const navigate = useNavigate();
 
@@ -28,6 +30,14 @@ function App() {
     }
   }, [userData]);
 
+    useEffect(() => {
+      if (myJournal) {
+        localStorage.setItem("myJournal", JSON.stringify(myJournal));
+      } else {
+        localStorage.removeItem("myJournal");
+      }
+    }, [myJournal]);
+
   const logout = () => {
     localStorage.removeItem("userData");
     setUserData(null);
@@ -35,7 +45,9 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider value={{ userData, setUserData, logout, myJournal }}>
+    <AuthContext.Provider
+      value={{ userData, setUserData, logout, myJournal, setJournal }}
+    >
       <Header />
       <Suspense fallback={<div>Բեռնում...</div>}>
         <Routes>

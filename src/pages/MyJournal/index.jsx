@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../../context/authContext.js";
+import { AuthContext } from "../../context/authContext";
 import styles from "./MyJournal.module.css";
 import recycleBinIcon from "../../assets/recyclebinicon.png";
 
