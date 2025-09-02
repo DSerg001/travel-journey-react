@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import { AuthContext } from "../../context/authContext";
+import useAuthStore from "../../store/useAuthStore";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +9,7 @@ const Login = () => {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const { setUserData } = useContext(AuthContext);
+  const setUserData = useAuthStore((state) => state.setUserData);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -39,7 +39,6 @@ const Login = () => {
       };
 
       setUserData(newUserData);
-
       navigate("/explore");
     }
   };

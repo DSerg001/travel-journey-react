@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import styles from "./AddTripModal.module.css";
-import { AuthContext } from "../../context/authContext";
+import useJournalStore from "../../store/useJournalStore";
 
 const initialFormState = {
   title: "",
@@ -14,7 +14,7 @@ const initialFormState = {
 const AddTripModal = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
-  const { setJournal } = useContext(AuthContext);
+  const { addJournal } = useJournalStore();
 
   useEffect(() => {
     if (isOpen) {
@@ -56,9 +56,12 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
       return;
     }
 
-    onAdd({ ...formData, id: Date.now() });
+    const newTrip = { ...formData, id: Date.now() };
+
+    onAdd(newTrip); // parent callback
+    addJournal(newTrip); // zustand store update
+
     setFormData(initialFormState);
-    setJournal((prev) => [...prev, formData]);
     setErrors({});
     onClose();
   };

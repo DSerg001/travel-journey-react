@@ -1,6 +1,5 @@
-import { useContext } from "react";
+import useJournalStore from "../../store/useJournalStore";
 import styles from "./Explore.module.css";
-import { AuthContext } from "../../context/authContext";
 
 const travelPosts = [
   {
@@ -60,12 +59,23 @@ const travelPosts = [
 ];
 
 const Explore = () => {
-  const { myJournal } = useContext(AuthContext);
+  const myJournal = useJournalStore((state) => state.myJournal);
+
+  const combinedPosts = [
+    ...myJournal.map((post) => ({
+      ...post,
+      uniqueKey: `journal-${post.id}`,
+    })),
+    ...travelPosts.map((post) => ({
+      ...post,
+      uniqueKey: `travel-${post.id}`,
+    })),
+  ];
 
   return (
     <div className={styles.exploreGrid}>
-      {[...myJournal, ...travelPosts].map((post) => (
-        <div key={post.id} className={styles.travelCard}>
+      {combinedPosts.map((post) => (
+        <div key={post.uniqueKey} className={styles.travelCard}>
           <img
             src={post.imagePreview || post.imageUrl}
             alt={post.title}
@@ -76,6 +86,7 @@ const Explore = () => {
             <p className={styles.cardLocation}>{post.location}</p>
             <p className={styles.cardDate}>{post.date}</p>
             <p className={styles.cardDescription}>{post.description}</p>
+            <button className="read-more-btn">Read More</button>
           </div>
         </div>
       ))}

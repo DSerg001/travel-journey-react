@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import styles from "./Header.module.css";
-import { AuthContext } from "../../context/authContext";
 import AddTripModal from "../Modal/AddTripModal";
 import logo from "../../assets/travel journey.png";
+import useAuthStore from "../../store/useAuthStore";
 
 const Header = () => {
-  const { userData, logout } = useContext(AuthContext);
+  const { userData, logout } = useAuthStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddTripClick = () => {
@@ -32,7 +32,7 @@ const Header = () => {
           <h3 className={styles.headerBtn}>Explore</h3>
         </a>
 
-        {userData?.isAuthenticated ? (
+        {userData ? (
           <div className={styles.authLinks}>
             <a href="/my-journal">
               <h3 className={styles.headerBtn}>My Journal</h3>

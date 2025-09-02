@@ -1,16 +1,15 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
+import useJournalStore from "../../store/useJournalStore";
 import styles from "./MyJournal.module.css";
 import recycleBinIcon from "../../assets/recyclebinicon.png";
 
 const MyJournalPage = () => {
-  const { myJournal, setJournal } = useContext(AuthContext);
-  console.log(myJournal);
+  const myJournal = useJournalStore((state) => state.myJournal);
+  const removeJournal = useJournalStore((state) => state.removeJournal);
 
   return (
     <div className={styles.exploreGrid}>
       {myJournal.map((post) => (
-        <div key={post.title} className={styles.travelCard}>
+        <div key={post.id} className={styles.travelCard}>
           <img
             src={post.imagePreview}
             alt={post.title}
@@ -25,9 +24,7 @@ const MyJournalPage = () => {
 
           <button
             className={styles.deleteButton}
-            onClick={() =>
-              setJournal(myJournal.filter((j) => j.title !== post.title))
-            }
+            onClick={() => removeJournal(post.id)}
           >
             <img
               src={recycleBinIcon}
