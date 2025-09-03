@@ -86,7 +86,7 @@ const Explore = () => {
             <p className={styles.cardLocation}>{post.location}</p>
             <p className={styles.cardDate}>{post.date}</p>
             <p className={styles.cardDescription}>{post.description}</p>
-            <button className="read-more-btn">Read More</button>
+            <a className={styles.readMoreBtn}>Read More</a>
           </div>
         </div>
       ))}

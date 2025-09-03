@@ -11,6 +11,7 @@ const useAuthStore = create((set) => ({
   logout: () => {
     localStorage.removeItem("userData");
     set({ userData: null });
+    window.location.reload()
   },
 }));
 
