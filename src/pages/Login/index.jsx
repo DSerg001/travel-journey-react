@@ -74,7 +74,7 @@ const Login = () => {
         )}
 
         <button onClick={handleLogin} className={styles.loginButton}>
-          Enter
+          Login
         </button>
       </div>
     </div>

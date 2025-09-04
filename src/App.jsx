@@ -7,6 +7,7 @@ const Explore = lazy(() => import("./pages/Explore/index.jsx"));
 const Login = lazy(() => import("./pages/Login/index.jsx"));
 const AddTripPage = lazy(() => import("./pages/AddTrip/index.jsx"));
 const MyJournalPage = lazy(() => import("./pages/MyJournal/index.jsx"));
+const PostPage = lazy(() => import("./pages/Post/index.jsx"));
 
 function App() {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ function App() {
     { path: "/login", element: <Login /> },
     { path: "/add-trip", element: <AddTripPage /> },
     { path: "/my-journal", element: <MyJournalPage /> },
+    { path: "/post/:source/:id", element: <PostPage /> },
   ]);
 
   return (

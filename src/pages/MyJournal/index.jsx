@@ -11,7 +11,7 @@ const MyJournalPage = () => {
       {myJournal.map((post) => (
         <div key={post.id} className={styles.travelCard}>
           <img
-            src={post.imagePreview}
+            src={post.imageUrl || post.imagePreview}
             alt={post.title}
             className={styles.cardImage}
           />

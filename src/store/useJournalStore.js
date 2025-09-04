@@ -21,6 +21,11 @@ const useJournalStore = create((set) => ({
       localStorage.setItem("myJournal", JSON.stringify(updated));
       return { myJournal: updated };
     }),
+
+  clearJournal: () => {
+    localStorage.removeItem("myJournal");
+    set({ myJournal: [] });
+  },
 }));
 
 export default useJournalStore;
