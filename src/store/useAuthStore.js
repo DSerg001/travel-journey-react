@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { notifySuccess } from "../utils/toast";
+import useJournalStore from "./useJournalStore";
 
 const useAuthStore = create((set) => ({
   userData: JSON.parse(localStorage.getItem("userData")) || null,
@@ -11,7 +13,14 @@ const useAuthStore = create((set) => ({
   logout: () => {
     localStorage.removeItem("userData");
     set({ userData: null });
-    window.location.reload()
+
+    useJournalStore.getState().clearJournal();
+
+    notifySuccess("Logout successful");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
   },
 }));
 

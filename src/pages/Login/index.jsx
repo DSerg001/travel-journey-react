@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import useAuthStore from "../../store/useAuthStore";
+import { notifySuccess, notifyError } from "../../utils/toast";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -39,7 +40,10 @@ const Login = () => {
       };
 
       setUserData(newUserData);
-      navigate("/explore");
+      notifySuccess("Login successful");
+      navigate("/");
+    } else {
+      notifyError("Please fix the errors");
     }
   };
 

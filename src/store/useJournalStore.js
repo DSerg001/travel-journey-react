@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { notifySuccess } from "../utils/toast";
 
 const useJournalStore = create((set) => ({
   myJournal: JSON.parse(localStorage.getItem("myJournal")) || [],
@@ -15,12 +16,14 @@ const useJournalStore = create((set) => ({
       return { myJournal: updated };
     }),
 
-  removeJournal: (id) =>
+  removeJournal: (id) => {
     set((state) => {
       const updated = state.myJournal.filter((j) => j.id !== id);
       localStorage.setItem("myJournal", JSON.stringify(updated));
       return { myJournal: updated };
-    }),
+    });
+    notifySuccess("Trip deleted successfully");
+  },
 
   clearJournal: () => {
     localStorage.removeItem("myJournal");

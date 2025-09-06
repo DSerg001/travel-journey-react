@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./AddTripModal.module.css";
 import useJournalStore from "../../store/useJournalStore";
+import { notifySuccess, notifyError, notifyWarn} from "../../utils/toast";
 
 const initialFormState = {
   title: "",
@@ -51,19 +52,27 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
 
   const handleAdd = () => {
     const validationErrors = validate();
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      notifyError("Please fill out completely");
       return;
     }
 
     const newTrip = { ...formData, id: Date.now() };
 
-    onAdd(newTrip); // parent callback
-    addJournal(newTrip); // zustand store update
+    onAdd(newTrip);
+    addJournal(newTrip);
 
     setFormData(initialFormState);
     setErrors({});
     onClose();
+
+    notifySuccess("Trip added successfully");
+
+    notifyWarn(
+      "⚠️ Warning! All trips you have added will be deleted after logging out"
+    );
   };
 
   const handleCancel = () => {

@@ -1,6 +1,9 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() => import("./pages/Home/index.jsx"));
 const Explore = lazy(() => import("./pages/Explore/index.jsx"));
@@ -14,8 +17,22 @@ function App() {
     { path: "/", element: <Home /> },
     { path: "/explore", element: <Explore /> },
     { path: "/login", element: <Login /> },
-    { path: "/add-trip", element: <AddTripPage /> },
-    { path: "/my-journal", element: <MyJournalPage /> },
+    {
+      path: "/add-trip",
+      element: (
+        <ProtectedRoute>
+          <AddTripPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/my-journal",
+      element: (
+        <ProtectedRoute>
+          <MyJournalPage />
+        </ProtectedRoute>
+      ),
+    },
     { path: "/post/:source/:id", element: <PostPage /> },
   ]);
 
@@ -25,6 +42,18 @@ function App() {
       <Suspense fallback={<div>Բեռնում...</div>}>
         <RouterProvider router={router} />
       </Suspense>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        draggable
+        pauseOnHover
+        theme="colored"
+        limit={3}
+      />
     </>
   );
 }
