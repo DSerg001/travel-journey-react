@@ -7,7 +7,7 @@ export const notifySuccess = (msg) =>
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
     progress: undefined,
   });
@@ -18,7 +18,7 @@ export const notifyError = (msg) =>
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
     progress: undefined,
   });
@@ -29,7 +29,7 @@ export const notifyWarn = (msg) =>
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
     progress: undefined,
   });

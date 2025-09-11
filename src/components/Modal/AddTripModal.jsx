@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./AddTripModal.module.css";
 import useJournalStore from "../../store/useJournalStore";
-import { notifySuccess, notifyError, notifyWarn} from "../../utils/toast";
+import { notifySuccess, notifyError, notifyWarn } from "../../utils/toast";
 
 const initialFormState = {
   title: "",
@@ -52,24 +52,25 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
 
   const handleAdd = () => {
     const validationErrors = validate();
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      notifyError("Please fill out completely");
+      notifyError("Please fill out all fields!");
       return;
     }
 
-    const newTrip = { ...formData, id: Date.now() };
+    const newTrip = {
+      ...formData,
+      id: Date.now(),
+      views: 0, 
+    };
 
-    onAdd(newTrip);
     addJournal(newTrip);
-
+    onAdd(newTrip);
     setFormData(initialFormState);
     setErrors({});
     onClose();
 
-    notifySuccess("Trip added successfully");
-
+    notifySuccess("Trip added successfully!");
     notifyWarn(
       "⚠️ Warning! All trips you have added will be deleted after logging out"
     );
@@ -95,7 +96,7 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
       aria-modal="true"
     >
       <div className={styles.modalContent}>
-        <h2>Add New Trip</h2>
+        <h2 className={styles.modalTitle}>Add New Trip</h2>
 
         <div className={styles.fileInputWrapper}>
           <input
@@ -127,6 +128,7 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
           placeholder="Title"
           value={formData.title}
           onChange={handleChange}
+          className={styles.input}
         />
         {errors.title && <span className={styles.error}>{errors.title}</span>}
 
@@ -136,6 +138,7 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
           placeholder="Location"
           value={formData.location}
           onChange={handleChange}
+          className={styles.input}
         />
         {errors.location && (
           <span className={styles.error}>{errors.location}</span>
@@ -144,7 +147,6 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
         <input
           type="date"
           name="date"
-          placeholder="Date"
           value={formData.date}
           max={`${currentYear}-12-31`}
           onChange={(e) => {
@@ -156,14 +158,12 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
                 "0" +
                 (today.getMonth() + 1)
               ).slice(-2)}-${("0" + today.getDate()).slice(-2)}`;
-              setFormData((prev) => ({
-                ...prev,
-                date: formattedDate,
-              }));
+              setFormData((prev) => ({ ...prev, date: formattedDate }));
             } else {
               handleChange(e);
             }
           }}
+          className={styles.input}
         />
         {errors.date && <span className={styles.error}>{errors.date}</span>}
 
@@ -172,14 +172,19 @@ const AddTripModal = ({ isOpen, onClose, onAdd }) => {
           placeholder="Description"
           value={formData.description}
           onChange={handleChange}
+          className={styles.textarea}
         />
         {errors.description && (
           <span className={styles.error}>{errors.description}</span>
         )}
 
         <div className={styles.modalButtons}>
-          <button onClick={handleAdd}>Add</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button className={styles.addBtn} onClick={handleAdd}>
+            Add
+          </button>
+          <button className={styles.cancelBtn} onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useJournalStore from "../../store/useJournalStore";
-import styles from "./Explore.module.css";
 import travelPosts from "../../data/travelPosts";
+import styles from "./Explore.module.css";
 
 const Explore = () => {
+  const navigate = useNavigate();
   const myJournal = useJournalStore((state) => state.myJournal);
 
   const combinedPosts = [
@@ -12,28 +13,35 @@ const Explore = () => {
   ];
 
   return (
-    <div className={styles.exploreGrid}>
-      {combinedPosts.map((post) => (
-        <div key={`${post.source}-${post.id}`} className={styles.travelCard}>
-          <img
-            src={post.imageUrl || post.imagePreview}
-            alt={post.title}
-            className={styles.cardImage}
-          />
-          <div className={styles.cardContent}>
-            <h2 className={styles.cardTitle}>{post.title}</h2>
-            <p className={styles.cardLocation}>{post.location}</p>
-            <p className={styles.cardDate}>{post.date}</p>
-            <p className={styles.cardDescription}>{post.description}</p>
-            <Link
-              to={`/post/${post.source}/${post.id}`}
-              className={styles.readMoreBtn}
-            >
-              Read More
-            </Link>
+    <div className={styles.exploreGrid} title="Click for more details">
+      {combinedPosts.length === 0 ? (
+        <p className={styles.noPosts}>No trips to display</p>
+      ) : (
+        combinedPosts.map((post) => (
+          <div
+            key={`${post.source}-${post.id}`}
+            className={styles.travelCard}
+            onClick={() => navigate(`/post/${post.source}/${post.id}`)}
+            style={{ cursor: "pointer", position: "relative" }}
+          >
+            <div className={styles.imageWrapper}>
+              <img
+                src={post.imageUrl || post.imagePreview}
+                alt={post.title}
+                className={styles.cardImage}
+              />
+              <div className={styles.views}>👁 {post.views || 0}</div>
+            </div>
+
+            <div className={styles.cardContent}>
+              <h2 className={styles.cardTitle}>{post.title}</h2>
+              <p className={styles.cardLocation}>{post.location}</p>
+              <p className={styles.cardDate}>{post.date}</p>
+              <p className={styles.cardDescription}>{post.description}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

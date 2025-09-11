@@ -11,7 +11,16 @@ const useJournalStore = create((set) => ({
 
   addJournal: (journal) =>
     set((state) => {
-      const updated = [...state.myJournal, journal];
+      const updated = [...state.myJournal, { ...journal, views: 0 }]; 
+      localStorage.setItem("myJournal", JSON.stringify(updated));
+      return { myJournal: updated };
+    }),
+
+  updateJournal: (updatedJournal) =>
+    set((state) => {
+      const updated = state.myJournal.map((j) =>
+        j.id === updatedJournal.id ? updatedJournal : j
+      );
       localStorage.setItem("myJournal", JSON.stringify(updated));
       return { myJournal: updated };
     }),

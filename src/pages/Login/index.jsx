@@ -20,7 +20,7 @@ const Login = () => {
       setUsernameError("Please fill in the username field.");
       hasError = true;
     } else if (username.length < 4) {
-      setUsernameError("The username length should be at least 4 letters");
+      setUsernameError("Username should be at least 4 characters");
       hasError = true;
     } else {
       setUsernameError("");
@@ -48,41 +48,44 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <h1 className={styles.loginText}>Login</h1>
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Username"
-          className={`${styles.input} ${
-            usernameError ? styles.inputError : ""
-          }`}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {usernameError && (
-          <div className={styles.errorMessage}>{usernameError}</div>
-        )}
+    <div className={styles.centerWrapper}>
+      <div className={styles.loginContainer}>
+        <h1 className={styles.loginText}>Login</h1>
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="Username"
+            className={`${styles.input} ${
+              usernameError ? styles.inputError : ""
+            }`}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {usernameError && (
+            <div className={styles.errorMessage}>{usernameError}</div>
+          )}
 
-        <input
-          type="password"
-          placeholder="Password"
-          className={`${styles.input} ${
-            passwordError ? styles.inputError : ""
-          }`}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {passwordError && (
-          <div className={styles.errorMessage}>{passwordError}</div>
-        )}
+          <input
+            type="password"
+            placeholder="Password"
+            className={`${styles.input} ${
+              passwordError ? styles.inputError : ""
+            }`}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordError && (
+            <div className={styles.errorMessage}>{passwordError}</div>
+          )}
 
-        <button onClick={handleLogin} className={styles.loginButton}>
-          Login
-        </button>
+          <button onClick={handleLogin} className={styles.loginButton}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );
+
 };
 
 export default Login;

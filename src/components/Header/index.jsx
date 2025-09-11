@@ -7,30 +7,31 @@ import useAuthStore from "../../store/useAuthStore";
 const Header = () => {
   const { userData, logout } = useAuthStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleAddTripClick = () => {
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+
+  const handleAddTripClick = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
   const handleAddTrip = (tripData) => {
     console.log("New trip added:", tripData);
+    setIsModalOpen(false);
   };
+
   return (
-    <div className={styles.header}>
-      <div className={styles.imgLogo}>
+    <header className={styles.header}>
+      <div className={styles.logoContainer}>
         <a href="/">
-          <img src={logo} alt="Travel Journey" className="logo" />
+          <img src={logo} alt="Travel Journey" className={styles.logo} />
         </a>
       </div>
-      <nav className={styles.navigateBtn}>
-        <a href="/explore">
-          <h3 className={styles.headerBtn}>Explore</h3>
+
+      <nav className={styles.nav}>
+        <a href="/explore" className={styles.navLink}>
+          Explore
         </a>
+
         {userData ? (
           <div className={styles.authLinks}>
-            <a href="/my-journal">
-              <h3 className={styles.headerBtn}>My Journal</h3>
+            <a href="/my-journal" className={styles.navLink}>
+              My Journal
             </a>
             <button className={styles.headerBtn} onClick={handleAddTripClick}>
               Add Trip
@@ -40,17 +41,19 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          <a href="/login">
-            <h3 className={styles.headerBtn}>Login</h3>
+          <a href="/login" className={styles.navLink}>
+            Login
           </a>
         )}
       </nav>
+
       <AddTripModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onAdd={handleAddTrip}
       />
-    </div>
+    </header>
   );
 };
+
 export default Header;

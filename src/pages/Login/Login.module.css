@@ -4,38 +4,36 @@
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  background-color: #f5f6fa;
+  overflow: hidden;
 }
 
 .loginContainer {
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
   align-items: center;
+  gap: 25px;
   max-width: 400px;
-  margin: 0 auto;
+  width: 100%;
   font-family: 'Inter', sans-serif;
-  transition: transform 0.3s ease-in-out;
-}
-
-.loginContainer:hover {
-  transform: translateY(-5px);
+  text-align: center;
 }
 
 .loginText {
   color: #2c3e50;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .inputContainer {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -43,10 +41,11 @@
   width: 100%;
   padding: 15px 20px;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
   color: #333;
+  box-sizing: border-box;
 }
 
 .input:focus {
@@ -63,8 +62,7 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
-  margin-top: 10px;
+  border-radius: 10px;
   font-size: 1rem;
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
   transition: all 0.3s ease;
@@ -82,8 +80,8 @@
 
 .errorMessage {
   color: #e74c3c;
-  font-size: 0.9rem;
-  margin-top: -10px;
+  font-size: 0.85rem;
+  margin-top: -8px;
   margin-bottom: 5px;
   align-self: flex-start;
 }

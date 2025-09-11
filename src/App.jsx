@@ -11,7 +11,7 @@ const Explore = lazy(() => import("./pages/Explore/index.jsx"));
 const Login = lazy(() => import("./pages/Login/index.jsx"));
 const AddTripPage = lazy(() => import("./pages/AddTrip/index.jsx"));
 const MyJournalPage = lazy(() => import("./pages/MyJournal/index.jsx"));
-const PostPage = lazy(() => import("./pages/Post/index.jsx"));
+const SinglePost = lazy(() => import("./pages/Post/SinglePost.jsx"));
 
 function App() {
   const router = createBrowserRouter([
@@ -34,7 +34,7 @@ function App() {
         </ProtectedRoute>
       ),
     },
-    { path: "/post/:source/:id", element: <PostPage /> },
+    { path: "/post/:source/:id", element: <SinglePost /> },
   ]);
 
   return (
