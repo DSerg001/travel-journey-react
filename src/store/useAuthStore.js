@@ -20,7 +20,7 @@ const useAuthStore = create((set) => ({
 
     setTimeout(() => {
       window.location.reload();
-    }, 0);
+    }, 500);
   },
 }));
 

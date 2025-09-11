@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "./components/Loader/Loader.jsx";
 
 const Home = lazy(() => import("./pages/Home/index.jsx"));
 const Explore = lazy(() => import("./pages/Explore/index.jsx"));
@@ -39,7 +40,7 @@ function App() {
   return (
     <>
       <Header />
-      <Suspense fallback={<div>Բեռնում...</div>}>
+      <Suspense fallback={<Loader />}>
         <RouterProvider router={router} />
       </Suspense>
 
