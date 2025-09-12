@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useJournalStore from "../../store/useJournalStore";
 import travelPosts from "../../data/travelPosts";
+import { getDescriptionById } from "../../data/contentDescription";
 import styles from "./Post.module.css";
 
 const SinglePost = () => {
@@ -13,47 +14,38 @@ const SinglePost = () => {
   useEffect(() => {
     const seenPosts = JSON.parse(localStorage.getItem("seenPosts")) || [];
 
-    if (source === "journal") {
-      const found = myJournal.find((p) => String(p.id) === id);
-      if (found) {
-        if (!seenPosts.includes(`journal-${id}`)) {
-          const updated = { ...found, views: (found.views || 0) + 1 };
-          updateJournal(updated);
-          setPost(updated);
+    const handlePost = (posts, keyPrefix, updateFn) => {
+      const found = posts.find((p) => String(p.id) === id);
+      if (!found) return null;
 
-          localStorage.setItem(
-            "seenPosts",
-            JSON.stringify([...seenPosts, `journal-${id}`])
-          );
-        } else {
-          setPost(found);
-        }
+      const key = `${keyPrefix}-${id}`;
+      if (!seenPosts.includes(key)) {
+        const updated = { ...found, views: (found.views || 0) + 1 };
+        if (updateFn) updateFn(updated);
+        setPost(updated);
+        localStorage.setItem("seenPosts", JSON.stringify([...seenPosts, key]));
+      } else {
+        setPost(found);
       }
+    };
+
+    if (source === "journal") {
+      handlePost(myJournal, "journal", updateJournal);
     } else if (source === "travel") {
       const storedPosts =
         JSON.parse(localStorage.getItem("travelPosts")) || travelPosts;
-      const found = storedPosts.find((p) => String(p.id) === id);
-      if (found) {
-        if (!seenPosts.includes(`travel-${id}`)) {
-          const updated = { ...found, views: (found.views || 0) + 1 };
-          const updatedPosts = storedPosts.map((p) =>
-            String(p.id) === id ? updated : p
-          );
-          localStorage.setItem("travelPosts", JSON.stringify(updatedPosts));
-          setPost(updated);
-
-          localStorage.setItem(
-            "seenPosts",
-            JSON.stringify([...seenPosts, `travel-${id}`])
-          );
-        } else {
-          setPost(found);
-        }
-      }
+      handlePost(storedPosts, "travel", (updated) => {
+        const updatedPosts = storedPosts.map((p) =>
+          String(p.id) === id ? updated : p
+        );
+        localStorage.setItem("travelPosts", JSON.stringify(updatedPosts));
+      });
     }
   }, [source, id, myJournal, updateJournal]);
 
   if (!post) return <h2 className={styles.notFound}>Post not found</h2>;
+
+  const description = getDescriptionById(post.descriptionId);
 
   return (
     <div className={styles.container}>
@@ -66,8 +58,7 @@ const SinglePost = () => {
         alt={post.title}
         className={styles.image}
       />
-      <p className={styles.description}>{post.description}</p>
-
+      <p className={styles.description}>{description}</p>
       <p className={styles.views}>👁 {post.views}</p>
     </div>
   );

@@ -1,0 +1,103 @@
+.sliderWrapper {
+  position: relative;
+  max-width: 1250px;
+  margin: 50px auto;
+  padding: 40px 80px;      
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.sliderTrack {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  transition: transform 0.5s ease;
+  justify-content: center;
+}
+
+.tripContainer {
+  flex: 1;
+  max-width: 33.333%;
+  display: flex;
+  justify-content: center;
+}
+
+.travelCard {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 370px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  will-change: transform, box-shadow;
+}
+
+.travelCard:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.20);
+}
+
+
+.imageWrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 18px;
+}
+
+.cardTitle {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.cardLocation,
+.cardDate,
+.cardDescription {
+  font-size: 15px;
+  margin: 6px 0;
+  color: #444;
+}
+
+.navButton {
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 12px 18px; 
+  border-radius: 30%;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.navButton:hover {
+  background: linear-gradient(135deg, #66a6ff, #89f7fe);
+  color: #222;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.navButton.prev {
+  left: 15px;   
+}
+
+.navButton.next {
+  right: 15px;
+}

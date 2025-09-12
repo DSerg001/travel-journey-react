@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AddTripModal from "../../components/Modal/AddTripModal";
-import styles from "./AddTrip.module.css";
+import styles from "./AddTripPage.module.css";
 
 const initialTravelPosts = [
   {
@@ -42,14 +42,41 @@ const AddTripPage = () => {
   const handleAddTrip = (trip) => {
     setTrips([trip, ...trips]);
   };
+
   return (
-    <div>
-      <button
-        className={styles.addTripBtn}
-        onClick={() => setIsModalOpen(true)}
-      >
-        Add Trip
-      </button>
+    <div className={styles.pageContainer}>
+      <section className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>Discover Amazing Journeys</h1>
+        <p className={styles.heroSubtitle}>
+          Share your travel experiences and explore new destinations around the
+          world.
+        </p>
+        <button
+          className={styles.addTripBtn}
+          onClick={() => setIsModalOpen(true)}
+        >
+          Add Your Trip
+        </button>
+      </section>
+
+      <section className={styles.tripsGrid}>
+        {trips.map((trip) => (
+          <div key={trip.id} className={styles.tripCard}>
+            <img
+              src={trip.imageUrl}
+              alt={trip.title}
+              className={styles.tripImage}
+            />
+            <div className={styles.tripContent}>
+              <h3 className={styles.tripTitle}>{trip.title}</h3>
+              <p className={styles.tripLocation}>{trip.location}</p>
+              <p className={styles.tripDate}>{trip.date}</p>
+              <p className={styles.tripDescription}>{trip.description}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
       <AddTripModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

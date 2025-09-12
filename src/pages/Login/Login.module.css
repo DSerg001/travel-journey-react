@@ -3,85 +3,75 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
-  background-color: #f5f6fa;
-  overflow: hidden;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  padding: 20px;
+  font-family: "Inter", sans-serif;
 }
 
 .loginContainer {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-  padding: 50px 40px;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
-  max-width: 400px;
-  width: 100%;
-  font-family: 'Inter', sans-serif;
-  text-align: center;
 }
 
 .loginText {
-  color: #2c3e50;
-  font-size: 2.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
-  margin: 0;
+  color: #333;
+  margin-bottom: 25px;
 }
 
 .inputContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
+  gap: 15px;
 }
 
 .input {
-  width: 100%;
-  padding: 15px 20px;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  color: #333;
-  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
-}
-
-.loginButton {
-  width: 100%;
-  padding: 15px 20px;
-  background-color: #007bff;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-  transition: all 0.3s ease;
-}
-
-.loginButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(41, 128, 185, 0.5);
-  background-color: #0056b3;
+  border: 2px solid #66a6ff;
+  box-shadow: 0 4px 12px rgba(102, 166, 255, 0.3);
 }
 
 .inputError {
-  border-color: #e74c3c;
+  border-color: #ff4d4f;
 }
 
 .errorMessage {
-  color: #e74c3c;
   font-size: 0.85rem;
-  margin-top: -8px;
-  margin-bottom: 5px;
-  align-self: flex-start;
+  color: #ff4d4f;
+  margin-top: -10px;
+}
+
+.loginButton {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #66a6ff, #89f7fe);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.loginButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }

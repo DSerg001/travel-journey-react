@@ -12,7 +12,7 @@ export default function Loader() {
         backgroundColor: "#f9f9f9",
       }}
     >
-      <ClipLoader size={80} color="#3498db" />
+      <ClipLoader size={100} color="#3498db" />
     </div>
   );
 }

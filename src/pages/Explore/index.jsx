@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useJournalStore from "../../store/useJournalStore";
 import travelPosts from "../../data/travelPosts";
 import styles from "./Explore.module.css";
 
 const Explore = () => {
-  const navigate = useNavigate();
   const myJournal = useJournalStore((state) => state.myJournal);
 
   const combinedPosts = [
@@ -13,16 +12,15 @@ const Explore = () => {
   ];
 
   return (
-    <div className={styles.exploreGrid} title="Click for more details">
+    <div className={styles.exploreGrid}>
       {combinedPosts.length === 0 ? (
         <p className={styles.noPosts}>No trips to display</p>
       ) : (
         combinedPosts.map((post) => (
-          <div
+          <Link
             key={`${post.source}-${post.id}`}
+            to={`/post/${post.source}/${post.id}`}
             className={styles.travelCard}
-            onClick={() => navigate(`/post/${post.source}/${post.id}`)}
-            style={{ cursor: "pointer", position: "relative" }}
           >
             <div className={styles.imageWrapper}>
               <img
@@ -39,7 +37,7 @@ const Explore = () => {
               <p className={styles.cardDate}>{post.date}</p>
               <p className={styles.cardDescription}>{post.description}</p>
             </div>
-          </div>
+          </Link>
         ))
       )}
     </div>

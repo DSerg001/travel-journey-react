@@ -2,7 +2,7 @@ import Paris from "../assets/Paris.jpg";
 import Tokio from "../assets/Tokio.jpg";
 import NewZealand from "../assets/New Zeiland.jpg";
 import OldRome from "../assets/old-rome.jpg";
-import Santorini from "../assets/Santoini.jpg";
+import Santorini from "../assets/Santorini.jpg";
 import Marrakesh from "../assets/Marrakesh.jpg";
 import London from "../assets/London.jpg";
 import Barcelona from "../assets/Barcelona.jpg";
@@ -10,25 +10,33 @@ import Cairo from "../assets/Cairo.jpg";
 import Venice from "../assets/Venice.jpg";
 import Prague from "../assets/Prague.jpg";
 import Bangkok from "../assets/Bangkok.jpg";
+import Safari from "../assets/Safari.jpg"
 
 const travelPosts = [
+  {
+    id: 0,
+    title: "Քենիայի Սաֆարիի Արկածները",
+    location: "Քենիա, Աֆրիկա",
+    date: "Մարտի 15, 2024",
+    descriptionId: 0,
+    imageUrl: Safari,
+    views: 107,
+  },
   {
     id: 1,
     title: "Փարիզի հմայքը",
     location: "Փարիզ, Ֆրանսիա",
     date: "Հունիսի 15, 2024",
-    description:
-      "Փարիզը՝ սիրո քաղաքը, զարմանալի է իր ճարտարապետությամբ և հուշարձաններով։",
+    descriptionId: 1,
     imageUrl: Paris,
-    views: 324, // <-- դիտումների քանակ
+    views: 324,
   },
   {
     id: 2,
     title: "Տոկիոյի ժամանակակից գեղեցկությունը",
     location: "Տոկիո, Ճապոնիա",
     date: "Մարտի 10, 2024",
-    description:
-      "Տոկիոն ավանդականի և ժամանակակիցի յուրահատուկ համադրություն է։",
+    descriptionId: 2,
     imageUrl: Tokio,
     views: 412,
   },
@@ -37,8 +45,7 @@ const travelPosts = [
     title: "Նոր Զելանդիայի բնական հրաշքները",
     location: "Օքլենդ, Նոր Զելանդիա",
     date: "Հունվարի 22, 2024",
-    description:
-      "Նոր Զելանդիան անզուգական բնական գեղեցկություն ունի՝ լեռներ, լճեր և անտառներ։",
+    descriptionId: 3,
     imageUrl: NewZealand,
     views: 287,
   },
@@ -47,8 +54,7 @@ const travelPosts = [
     title: "Հին Հռոմի պատմությունը",
     location: "Հռոմ, Իտալիա",
     date: "Օգոստոսի 5, 2023",
-    description:
-      "Հռոմը՝ հավերժական քաղաքը, լի է պատմական հուշարձաններով և մշակութային ժառանգությամբ։",
+    descriptionId: 4,
     imageUrl: OldRome,
     views: 198,
   },
@@ -57,8 +63,7 @@ const travelPosts = [
     title: "Սանտորինիի արևածագը",
     location: "Սանտորինի, Հունաստան",
     date: "Հուլիսի 12, 2024",
-    description:
-      "Սանտորինիի սպիտակ տները և կապույտ գմբեթները իդեալական են հանգստի համար։",
+    descriptionId: 5,
     imageUrl: Santorini,
     views: 350,
   },
@@ -67,8 +72,7 @@ const travelPosts = [
     title: "Մարաքեշի կոլորիտը",
     location: "Մարաքեշ, Մարոկկո",
     date: "Ապրիլի 25, 2024",
-    description:
-      "Մարաքեշը հայտնի է իր գունեղ շուկաներով, պարտեզներով և ճարտարապետությամբ։",
+    descriptionId: 6,
     imageUrl: Marrakesh,
     views: 275,
   },
@@ -77,8 +81,7 @@ const travelPosts = [
     title: "Լոնդոնի շքեղությունը",
     location: "Լոնդոն, Մեծ Բրիտանիա",
     date: "Սեպտեմբերի 10, 2024",
-    description:
-      "Լոնդոնը համադրում է պատմություն և ժամանակակից մշակույթը՝ իր թագավորական պալատներով և ժամանակակից ցուցասրահներով։",
+    descriptionId: 7,
     imageUrl: London,
     views: 422,
   },
@@ -87,8 +90,7 @@ const travelPosts = [
     title: "Բարսելոնայի գույնը",
     location: "Բարսելոնա, Իսպանիա",
     date: "Հոկտեմբերի 5, 2024",
-    description:
-      "Բարսելոնան հայտնի է Գաուդիի ճարտարապետությամբ, գեղեցիկ փողոցներով և ծովափնյա հանգստավայրերով։",
+    descriptionId: 8,
     imageUrl: Barcelona,
     views: 310,
   },
@@ -97,8 +99,7 @@ const travelPosts = [
     title: "Կահիրեի հնագիտական առեղծվածները",
     location: "Կահիրե, Եգիպտոս",
     date: "Նոյեմբերի 12, 2024",
-    description:
-      "Կահիրեն հնագիտական հարստությամբ է հայտնի՝ հիացնող պիրամիդներով և հին քաղաքային կառույցներով։",
+    descriptionId: 9,
     imageUrl: Cairo,
     views: 280,
   },
@@ -107,8 +108,7 @@ const travelPosts = [
     title: "Վենետիկի ջրային երջանկությունը",
     location: "Վենետիկ, Իտալիա",
     date: "Մարտի 18, 2025",
-    description:
-      "Վենետիկն իր ջրանցքներով, ռոմանտիկ շինություններով և մշակութային ժառանգությամբ է հայտնի։",
+    descriptionId: 10,
     imageUrl: Venice,
     views: 395,
   },
@@ -117,8 +117,7 @@ const travelPosts = [
     title: "Պրահայի միջնադարյան հմայքը",
     location: "Պրահա, Չեխիա",
     date: "Ապրիլի 22, 2025",
-    description:
-      "Պրահան լի է պատմական կառույցներով, գեղեցիկ հրապարակներով և գոթական ճարտարապետությամբ։",
+    descriptionId: 11,
     imageUrl: Prague,
     views: 260,
   },
@@ -127,10 +126,9 @@ const travelPosts = [
     title: "Բանգկոկի կոլորիտը",
     location: "Բանգկոկ, Թաիլանդ",
     date: "Փետրվարի 20, 2025",
-    description:
-      "Բանգկոկը գունեղ քաղաք է, հայտնի իր շուկաներով, տաճարներով և փողոցային ուտեստներով։",
+    descriptionId: 12,
     imageUrl: Bangkok,
-    views: 310,
+    views: 312,
   },
 ];
 

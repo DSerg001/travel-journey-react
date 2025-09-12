@@ -1,137 +1,116 @@
 .pageContainer {
-  max-width: 1250px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: "Inter", "Roboto", sans-serif;
+  padding: 40px 20px;
+  font-family: "Inter", sans-serif;
+  margin: 120px;
 }
 
 .postsCount {
-  display: inline-block;
-  background-color: #f0f4f8;
-  color: #2c3e50;
+  font-size: 1.2rem;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: 1px solid #dce3eb;
-  margin-bottom: 20px;
-}
-
-.postsCount strong {
-  margin-right: 6px;
-  color: #34495e;
-}
-
-.exploreGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 35px;
-}
-
-.travelCard {
-  background-color: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.travelCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
-}
-
-.imageWrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 10px;
-  gap: 5px;
-}
-
-.cardImage {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  border-bottom: 1px solid #eee;
-  border-radius: 20px;
-}
-
-.views {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 5px 10px;
-  border-radius: 12px;
-}
-
-.cardContent {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.cardTitle {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #34495e;
-  margin-bottom: 10px;
-}
-
-.cardLocation {
-  font-size: 1.05rem;
-  color: #5e727b;
-  font-weight: 500;
-  margin-bottom: 7px;
-}
-
-.cardDate {
-  font-size: 0.95rem;
-  color: #95a5a6;
-  font-style: italic;
-  margin-bottom: 15px;
-}
-
-.cardDescription {
-  font-size: 1rem;
-  color: #4a5763;
-  line-height: 1.6;
-  flex-grow: 1;
-}
-
-.cardContent > * {
-  opacity: 0.9;
-  transform: translateY(5px);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.travelCard:hover .cardContent > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.deleteButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.deleteIcon {
-  width: 24px;
-  height: 24px;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 .noPosts {
   text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  grid-column: 1/-1;
+}
+
+.exploreGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.travelCard {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.travelCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.cardImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.views {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 0, 0, 0.85);
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.deleteButton:hover {
+  transform: scale(1.1);
+  background: rgba(255, 0, 0, 1);
+}
+
+.deleteIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.cardContent {
+  padding: 15px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
-  color: #7f8c8d;
-  margin-top: 50px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cardLocation {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.cardDate {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.4;
 }
