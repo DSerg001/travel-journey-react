@@ -1,23 +1,27 @@
 .pageContainer {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 120px auto 50px;
   padding: 40px 20px;
   font-family: "Inter", sans-serif;
-  margin: 120px;
 }
 
 .postsCount {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #333;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+  background: linear-gradient(90deg, #89f7fe, #66a6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .noPosts {
   text-align: center;
-  font-size: 1.1rem;
-  color: #666;
-  grid-column: 1/-1;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  grid-column: 1 / -1;
+  padding: 40px 0;
 }
 
 .exploreGrid {
@@ -34,6 +38,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .travelCard:hover {
@@ -43,20 +48,33 @@
 
 .imageWrapper {
   position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center;
+  padding-bottom: 10px;
 }
 
 .cardImage {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.travelCard:hover .cardImage {
+  transform: scale(1.05);
 }
 
 .views {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  color: #fff;
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 12px;
@@ -67,7 +85,6 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: rgba(255, 0, 0, 0.85);
   border: none;
   border-radius: 50%;
   padding: 6px;
@@ -77,7 +94,6 @@
 
 .deleteButton:hover {
   transform: scale(1.1);
-  background: rgba(255, 0, 0, 1);
 }
 
 .deleteIcon {
@@ -86,7 +102,7 @@
 }
 
 .cardContent {
-  padding: 15px 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -113,4 +129,10 @@
   font-size: 0.9rem;
   color: #444;
   line-height: 1.4;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }

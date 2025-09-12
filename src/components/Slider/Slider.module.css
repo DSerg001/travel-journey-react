@@ -55,21 +55,37 @@
 
 .cardContent {
   padding: 18px;
+  background-color: #fefefe;
+  border-radius: 12px;
 }
 
 .cardTitle {
   font-size: 20px;
-  margin: 0;
+  margin: 0 0 6px 0;
   font-weight: 600;
+  color: #1a1a1a;
 }
 
-.cardLocation,
-.cardDate,
+.cardLocation {
+  font-size: 15px;
+  margin: 4px 0;
+  color: #555;
+}
+
+.cardDate {
+  font-size: 14px;
+  margin: 2px 0;
+  color: #888;
+  font-style: italic;
+}
+
 .cardDescription {
   font-size: 15px;
   margin: 6px 0;
   color: #444;
+  line-height: 1.5;
 }
+
 
 .navButton {
   background: linear-gradient(135deg, #89f7fe, #66a6ff);

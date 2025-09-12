@@ -45,7 +45,9 @@ const SinglePost = () => {
 
   if (!post) return <h2 className={styles.notFound}>Post not found</h2>;
 
-  const description = getDescriptionById(post.descriptionId);
+  const description = post.descriptionId
+    ? getDescriptionById(post.descriptionId)
+    : post.description || "No description";
 
   return (
     <div className={styles.container}>

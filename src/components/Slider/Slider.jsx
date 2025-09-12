@@ -68,7 +68,6 @@ const Slider = () => {
     },
   ];
 
-  // index պահում ենք loop-ի համար
   const [index, setIndex] = useState(0);
 
   const nextSlide = () => {
@@ -79,7 +78,6 @@ const Slider = () => {
     setIndex((prev) => (prev - 1 + posts.length) % posts.length);
   };
 
-  // Վերադարձնում ենք 3 քարտ ըստ ընթացիկ ինդեքսի
   const getVisiblePosts = () => {
     let visible = [];
     for (let i = 0; i < 3; i++) {
